@@ -14,6 +14,28 @@
 			class="ru.job4j.introduction.ImportUser">
 			<constructor-arg ref="memoryStorage"/>
 		</bean>
-		
-
+		<!--          Music Player Part         -->
+		<context:property-placeholder location="classpath:musicPlayer.properties"/>
+		<bean id="classicalMusic"
+			class="ru.job4j.music.ClassicalMusic">
+		</bean>
+		<bean id="rockMusic"
+			class="ru.job4j.music.RockMusic">
+		</bean>
+		<bean id="popMusic"
+			class="ru.job4j.music.PopMusic">
+		</bean>
+		<bean id="musicPlayer"
+			class="ru.job4j.music.MusicPlayer">
+			<property name="name" value="${musicPlayer.name}"/>
+        	<property name="volume" value="${musicPlayer.volume}"/>
+			<property name="music">
+				<list>  
+					<ref bean="classicalMusic"/>  
+					<ref bean="rockMusic"/>
+					<ref bean="popMusic"/>    
+				</list>  
+			</property>
+		</bean>
+		<!--       /Music Player Part        -->
 </beans>
