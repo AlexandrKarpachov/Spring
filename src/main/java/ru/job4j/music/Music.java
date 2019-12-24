@@ -1,5 +1,7 @@
 package ru.job4j.music;
 
+import java.util.List;
+
 public interface Music {
-	public String getSong();
+	public List<String> getMusic();
 }

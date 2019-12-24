@@ -9,12 +9,13 @@ public class Test {
                 "applicationContext.xml"
         )) {
 			
-			MusicPlayer player = context.getBean(MusicPlayer.class);
-			String expecting = "Playing: Hungarian Rhapsody" + System.lineSeparator()
-					+ "Playing: Du, Du Hust!" + System.lineSeparator()
-					+ "Playing: La - la - la" + System.lineSeparator();
-					
-			player.playMusic();
+
+	        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+
+	        musicPlayer.playMusic(Style.CLASSICAL);
+	        musicPlayer.playMusic(Style.ROCK);
+	        musicPlayer.playMusic(Style.POP);
+			
 			
 		
 	 }

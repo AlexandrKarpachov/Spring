@@ -14,12 +14,14 @@
 			class="ru.job4j.introduction.ImportUser">
 			<constructor-arg ref="memoryStorage"/>
 		</bean>
+		
+		<context:component-scan base-package="ru.job4j.music"></context:component-scan>
 		<!--          Music Player Part         -->
-		<context:property-placeholder location="classpath:musicPlayer.properties"/>
+		<!-- <context:property-placeholder location="classpath:musicPlayer.properties"/>
 		<bean id="classicalMusic"
 			class="ru.job4j.music.ClassicalMusic">
 		</bean>
-		<bean id="rockMusic"
+		<bean id="rockMusic" 
 			class="ru.job4j.music.RockMusic">
 		</bean>
 		<bean id="popMusic"
@@ -36,6 +38,6 @@
 					<ref bean="popMusic"/>    
 				</list>  
 			</property>
-		</bean>
+		</bean> -->
 		<!--       /Music Player Part        -->
 </beans>

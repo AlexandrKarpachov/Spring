@@ -1,72 +1,28 @@
 package ru.job4j.music;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MusicPlayer {
-	private List<Music> music;
-	private String name;
-	private int volume;
-    
-	public MusicPlayer() {
+	private Map<Style, Music> styles = new HashMap<>();
+   
+
+    @Autowired
+    public MusicPlayer(ClassicalMusic classicalMusic, RockMusic rockMusic, PopMusic popMusic) {
+        styles.put(Style.CLASSICAL, classicalMusic);
+        styles.put(Style.POP, popMusic);
+        styles.put(Style.ROCK, rockMusic);
     }
 
-	public void playMusic() {
-    	for (Music song : music) {
-    		System.out.println("Playing: " + song.getSong());
-    	}
+    public void playMusic(Style style) {
+        Random random = new Random();
+        int randomNumber = random.nextInt(3);
+        System.out.println(styles.get(style).getMusic().get(randomNumber));
     }
-	
-    public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getVolume() {
-		return volume;
-	}
-
-	public void setVolume(int volume) {
-		this.volume = volume;
-	}
-
-	public List<Music> getMusic() {
-		return music;
-	}
-
-	public void setMusic(List<Music> music) {
-		this.music = music;
-	}
-
-	
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(music, name, volume);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		MusicPlayer other = (MusicPlayer) obj;
-		return Objects.equals(music, other.music) && Objects.equals(name, other.name) && volume == other.volume;
-	}
-
-	@Override
-	public String toString() {
-		return String.format("MusicPlayer [music=%s, name=%s, volume=%s]", music, name, volume);
-	}
-
 	
 }
